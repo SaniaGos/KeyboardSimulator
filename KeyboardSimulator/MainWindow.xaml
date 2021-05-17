@@ -1,0 +1,144 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KeyboardSimulator"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="KeyboardSimulator.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800" KeyDown="Window_KeyDown">
+    <Window.Resources>
+
+        <Style TargetType="{x:Type Button}">
+            <EventSetter Event="Click" Handler="Button_Click"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                            <RadialGradientBrush.RelativeTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5"/>
+                                                    <TranslateTransform X="0.02" Y="0.3"/>
+                                                </TransformGroup>
+                                            </RadialGradientBrush.RelativeTransform>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                            <GradientStop Color="#FF303030" Offset="0.3"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="LightBlue"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="265"/>
+        </Grid.RowDefinitions>
+        <ListBoxItem x:Name="Box" Grid.Row="1" HorizontalContentAlignment="Center" FontSize="30">
+            <TextBlock Text="Ще не закінчив, незнаю як визвати трігер клавіші з клавіатури"/>
+        </ListBoxItem>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <StackPanel x:Name="OwnerPenal" Orientation="Vertical">
+                <StackPanel x:Name="FirstRow"  Margin="5,0,5,0" Orientation="Horizontal">
+                    <Button Content="`" Background="MediumVioletRed"/>
+                    <Button Content="1" Background="MediumVioletRed"/>
+                    <Button Content="2" Background="MediumVioletRed"/>
+                    <Button Content="3" Background="Yellow"/>
+                    <Button Content="4" Background="LightGreen"/>
+                    <Button Content="5" Background="DeepSkyBlue"/>
+                    <Button Content="6" Background="DeepSkyBlue"/>
+                    <Button Content="7" Background="Violet"/>
+                    <Button Content="8" Background="Violet"/>
+                    <Button Content="9" Background="MediumVioletRed"/>
+                    <Button Content="0" Background="Yellow"/>
+                    <Button Content="-" Background="LightGreen"/>
+                    <Button Content="=" Background="LightGreen"/>
+                    <Button x:Name="BackSpaceButton" Content="BackSpace" Background="DarkGray" Width="92" FontSize="16"/>
+                </StackPanel>
+                <StackPanel x:Name="SecondRow" Margin="5,0,5,0" Orientation="Horizontal">
+                    <Button Content="Tab" Background="DarkGray" Width="70" FontSize="20"/>
+                    <Button Content="q" Background="MediumVioletRed"/>
+                    <Button Content="w" Background="Yellow"/>
+                    <Button Content="e" Background="LightGreen"/>
+                    <Button Content="r" Background="DeepSkyBlue"/>
+                    <Button Content="t" Background="DeepSkyBlue"/>
+                    <Button Content="y" Background="Violet"/>
+                    <Button Content="u" Background="Violet"/>
+                    <Button Content="i" Background="MediumVioletRed"/>
+                    <Button Content="o" Background="Yellow"/>
+                    <Button Content="p" Background="LightGreen"/>
+                    <Button Content="[" Background="LightGreen"/>
+                    <Button Content="]" Background="LightGreen"/>
+                    <Button Content="\" x:Name="slesh" Background="LightGreen" Width="70"/>
+                </StackPanel>
+                <StackPanel x:Name="ThirdRow" Margin="5,0,5,0" Orientation="Horizontal">
+                    <Button Content="CapsLock" Background="DarkGray" Width="100" FontSize="16"/>
+                    <Button Content="a" Background="MediumVioletRed"/>
+                    <Button Content="s" Background="Yellow"/>
+                    <Button Content="d" Background="LightGreen"/>
+                    <Button Content="f" Background="DeepSkyBlue"/>
+                    <Button Content="g" Background="DeepSkyBlue"/>
+                    <Button Content="h" Background="Violet"/>
+                    <Button Content="j" Background="Violet"/>
+                    <Button Content="k" Background="MediumVioletRed"/>
+                    <Button Content="l" Background="Yellow"/>
+                    <Button Content=";" Background="LightGreen"/>
+                    <Button Content="'" Background="LightGreen"/>
+                    <Button Content="Enter" Background="DarkGray" Width="92" FontSize="16"/>
+                </StackPanel>
+                <StackPanel x:Name="FourthRow" Margin="5,0,5,0" Orientation="Horizontal">
+                    <Button Content="Shift" Background="DarkGray" Width="125" FontSize="16"/>
+                    <Button Content="z" Background="MediumVioletRed"/>
+                    <Button Content="x" Background="Yellow"/>
+                    <Button Content="c" Background="LightGreen"/>
+                    <Button Content="v" Background="DeepSkyBlue"/>
+                    <Button Content="b" Background="DeepSkyBlue"/>
+                    <Button Content="n" Background="Violet"/>
+                    <Button Content="m" Background="Violet"/>
+                    <Button Content="," Background="MediumVioletRed"/>
+                    <Button Content="." Background="Yellow"/>
+                    <Button Content="/" Background="LightGreen"/>
+                    <Button Content="Shift" Background="DarkGray" Width="120" FontSize="16"/>
+                </StackPanel>
+                <StackPanel x:Name="FifthRow" Margin="5,0,5,0" Orientation="Horizontal">
+                    <Button Content="Ctrl" Background="DarkGray" Width="70" FontSize="16"/>
+                    <Button Content="Win" Background="DarkGray" Width="75" FontSize="16"/>
+                    <Button Content="Alt" Background="DarkGray" Width="75" FontSize="16"/>
+                    <Button Content="Space" Background="Orange" Width="310" FontSize="20"/>
+                    <Button Content="Alt" Background="DarkGray" Width="75" FontSize="16"/>
+                    <Button Content="Win" Background="DarkGray" Width="70" FontSize="16"/>
+                    <Button Content="Ctrl" Background="DarkGray" Width="70" FontSize="16"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,15 @@
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\KeyboardSimulator.csprojAssemblyReference.cache
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\App.g.cs
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\KeyboardSimulator_MarkupCompile.cache
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\bin\Debug\KeyboardSimulator.exe.config
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\bin\Debug\KeyboardSimulator.exe
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\bin\Debug\KeyboardSimulator.pdb
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\MainWindow.g.cs
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\KeyboardSimulator_MarkupCompile.lref
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\MainWindow.baml
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\KeyboardSimulator.g.resources
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\KeyboardSimulator.Properties.Resources.resources
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\KeyboardSimulator.csproj.GenerateResource.cache
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\KeyboardSimulator.csproj.CoreCompileInputs.cache
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\KeyboardSimulator.exe
+C:\Users\SaniaGos\source\repos\KeyboardSimulator\KeyboardSimulator\obj\Debug\KeyboardSimulator.pdb
