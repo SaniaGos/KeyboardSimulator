@@ -38,10 +38,8 @@ namespace KeyboardSimulator
                         if (item is Button)
                         {
                             Button button = (item as Button);
-                            string key = e.Key.ToString();
-                            string buttonName = button.Name;
                             
-                            if (key.Equals(buttonName))
+                            if (e.Key.ToString().Equals(button.Name) || e.SystemKey.ToString().Equals(button.Name))
                             {
                                 button.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
                             }

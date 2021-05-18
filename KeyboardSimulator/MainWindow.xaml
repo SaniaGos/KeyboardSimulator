@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KeyboardSimulator"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="KeyboardSimulator.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800" KeyDown="Window_KeyDown">
+        Title="MainWindow" Height="450" Width="800" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800" KeyDown="Window_KeyDown" Background="AliceBlue">
     <Window.Resources>
 
         <Style TargetType="{x:Type Button}">
@@ -101,42 +101,42 @@
                     <Button Content="\" x:Name="Oem5" Background="LightGreen" Width="70"/>
                 </StackPanel>
                 <StackPanel x:Name="ThirdRow" Margin="5,0,5,0" Orientation="Horizontal">
-                    <Button Content="CapsLock" Background="DarkGray" Width="100" FontSize="16"/>
-                    <Button Content="a" Background="MediumVioletRed"/>
-                    <Button Content="s" Background="Yellow"/>
-                    <Button Content="d" Background="LightGreen"/>
-                    <Button Content="f" Background="DeepSkyBlue"/>
-                    <Button Content="g" Background="DeepSkyBlue"/>
-                    <Button Content="h" Background="Violet"/>
-                    <Button Content="j" Background="Violet"/>
-                    <Button Content="k" Background="MediumVioletRed"/>
-                    <Button Content="l" Background="Yellow"/>
-                    <Button Content=";" Background="LightGreen"/>
-                    <Button Content="'" Background="LightGreen"/>
-                    <Button Content="Enter" Background="DarkGray" Width="92" FontSize="16"/>
+                    <Button Content="CapsLock" x:Name="Capital" Background="DarkGray" Width="100" FontSize="16"/>
+                    <Button Content="a" x:Name="A" Background="MediumVioletRed"/>
+                    <Button Content="s" x:Name="S" Background="Yellow"/>
+                    <Button Content="d" x:Name="D" Background="LightGreen"/>
+                    <Button Content="f" x:Name="F" Background="DeepSkyBlue"/>
+                    <Button Content="g" x:Name="G" Background="DeepSkyBlue"/>
+                    <Button Content="h" x:Name="H" Background="Violet"/>
+                    <Button Content="j" x:Name="J" Background="Violet"/>
+                    <Button Content="k" x:Name="K" Background="MediumVioletRed"/>
+                    <Button Content="l" x:Name="L" Background="Yellow"/>
+                    <Button Content=";" x:Name="Oem1" Background="LightGreen"/>
+                    <Button Content="'" x:Name="OemQuotes" Background="LightGreen"/>
+                    <Button Content="Enter" x:Name="Return" Background="DarkGray" Width="92" FontSize="16"/>
                 </StackPanel>
                 <StackPanel x:Name="FourthRow" Margin="5,0,5,0" Orientation="Horizontal">
-                    <Button Content="Shift" Background="DarkGray" Width="125" FontSize="16"/>
-                    <Button Content="z" Background="MediumVioletRed"/>
-                    <Button Content="x" Background="Yellow"/>
-                    <Button Content="c" Background="LightGreen"/>
-                    <Button Content="v" Background="DeepSkyBlue"/>
-                    <Button Content="b" Background="DeepSkyBlue"/>
-                    <Button Content="n" Background="Violet"/>
-                    <Button Content="m" Background="Violet"/>
-                    <Button Content="," Background="MediumVioletRed"/>
-                    <Button Content="." Background="Yellow"/>
-                    <Button Content="/" Background="LightGreen"/>
-                    <Button Content="Shift" Background="DarkGray" Width="120" FontSize="16"/>
+                    <Button Content="Shift" x:Name="LeftShift" Background="DarkGray" Width="125" FontSize="16"/>
+                    <Button Content="z" x:Name="Z" Background="MediumVioletRed"/>
+                    <Button Content="x" x:Name="X" Background="Yellow"/>
+                    <Button Content="c" x:Name="C" Background="LightGreen"/>
+                    <Button Content="v" x:Name="V" Background="DeepSkyBlue"/>
+                    <Button Content="b" x:Name="B" Background="DeepSkyBlue"/>
+                    <Button Content="n" x:Name="N" Background="Violet"/>
+                    <Button Content="m" x:Name="M" Background="Violet"/>
+                    <Button Content="," x:Name="OemComma" Background="MediumVioletRed"/>
+                    <Button Content="." x:Name="OemPeriod" Background="Yellow"/>
+                    <Button Content="/" x:Name="OemQuestion" Background="LightGreen"/>
+                    <Button Content="Shift" x:Name="RightShift" Background="DarkGray" Width="120" FontSize="16"/>
                 </StackPanel>
                 <StackPanel x:Name="FifthRow" Margin="5,0,5,0" Orientation="Horizontal">
-                    <Button Content="Ctrl" Background="DarkGray" Width="70" FontSize="16"/>
-                    <Button Content="Win" Background="DarkGray" Width="75" FontSize="16"/>
-                    <Button Content="Alt" Background="DarkGray" Width="75" FontSize="16"/>
-                    <Button Content="Space" Background="Orange" Width="310" FontSize="20"/>
-                    <Button Content="Alt" Background="DarkGray" Width="75" FontSize="16"/>
+                    <Button Content="Ctrl" x:Name="LeftCtrl" Background="DarkGray" Width="70" FontSize="16"/>
+                    <Button Content="Win" x:Name="LWin" Background="DarkGray" Width="75" FontSize="16"/>
+                    <Button Content="Alt" x:Name="LeftAlt" Background="DarkGray" Width="75" FontSize="16"/>
+                    <Button Content="Space" x:Name="Space" Background="Orange" Width="310" FontSize="20"/>
+                    <Button Content="Alt" x:Name="RightAlt" Background="DarkGray" Width="75" FontSize="16"/>
                     <Button Content="Win" Background="DarkGray" Width="70" FontSize="16"/>
-                    <Button Content="Ctrl" Background="DarkGray" Width="70" FontSize="16"/>
+                    <Button Content="Ctrl" x:Name="RightCtrl" Background="DarkGray" Width="70" FontSize="16"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
