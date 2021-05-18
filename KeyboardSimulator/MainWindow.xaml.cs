@@ -25,6 +25,8 @@ namespace KeyboardSimulator
         public MainWindow()
         {
             InitializeComponent();
+
+            Icon = Properties.Resources.Keyboard;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
