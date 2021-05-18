@@ -69,36 +69,36 @@
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <StackPanel x:Name="OwnerPenal" Orientation="Vertical">
                 <StackPanel x:Name="FirstRow"  Margin="5,0,5,0" Orientation="Horizontal">
-                    <Button Content="`" Background="MediumVioletRed"/>
-                    <Button Content="1" Background="MediumVioletRed"/>
-                    <Button Content="2" Background="MediumVioletRed"/>
-                    <Button Content="3" Background="Yellow"/>
-                    <Button Content="4" Background="LightGreen"/>
-                    <Button Content="5" Background="DeepSkyBlue"/>
-                    <Button Content="6" Background="DeepSkyBlue"/>
-                    <Button Content="7" Background="Violet"/>
-                    <Button Content="8" Background="Violet"/>
-                    <Button Content="9" Background="MediumVioletRed"/>
-                    <Button Content="0" Background="Yellow"/>
-                    <Button Content="-" Background="LightGreen"/>
-                    <Button Content="=" Background="LightGreen"/>
-                    <Button x:Name="BackSpaceButton" Content="BackSpace" Background="DarkGray" Width="92" FontSize="16"/>
+                    <Button Content="`" x:Name="Oem3" Background="MediumVioletRed"/>
+                    <Button Content="1" x:Name="D1" Background="MediumVioletRed"/>
+                    <Button Content="2" x:Name="D2" Background="MediumVioletRed"/>
+                    <Button Content="3" x:Name="D3" Background="Yellow"/>
+                    <Button Content="4" x:Name="D4" Background="LightGreen"/>
+                    <Button Content="5" x:Name="D5" Background="DeepSkyBlue"/>
+                    <Button Content="6" x:Name="D6" Background="DeepSkyBlue"/>
+                    <Button Content="7" x:Name="D7" Background="Violet"/>
+                    <Button Content="8" x:Name="D8" Background="Violet"/>
+                    <Button Content="9" x:Name="D9" Background="MediumVioletRed"/>
+                    <Button Content="0" x:Name="D0" Background="Yellow"/>
+                    <Button Content="-" x:Name="OemMinus" Background="LightGreen"/>
+                    <Button Content="=" x:Name="OemPlus" Background="LightGreen"/>
+                    <Button Content="BackSpace" x:Name="Back" Background="DarkGray" Width="92" FontSize="16"/>
                 </StackPanel>
                 <StackPanel x:Name="SecondRow" Margin="5,0,5,0" Orientation="Horizontal">
-                    <Button Content="Tab" Background="DarkGray" Width="70" FontSize="20"/>
-                    <Button Content="q" Background="MediumVioletRed"/>
-                    <Button Content="w" Background="Yellow"/>
-                    <Button Content="e" Background="LightGreen"/>
-                    <Button Content="r" Background="DeepSkyBlue"/>
-                    <Button Content="t" Background="DeepSkyBlue"/>
-                    <Button Content="y" Background="Violet"/>
-                    <Button Content="u" Background="Violet"/>
-                    <Button Content="i" Background="MediumVioletRed"/>
-                    <Button Content="o" Background="Yellow"/>
-                    <Button Content="p" Background="LightGreen"/>
-                    <Button Content="[" Background="LightGreen"/>
-                    <Button Content="]" Background="LightGreen"/>
-                    <Button Content="\" x:Name="slesh" Background="LightGreen" Width="70"/>
+                    <Button Content="Tab" x:Name="Tab" Background="DarkGray" Width="70" FontSize="20"/>
+                    <Button Content="q" x:Name="Q" Background="MediumVioletRed"/>
+                    <Button Content="w" x:Name="W" Background="Yellow"/>
+                    <Button Content="e" x:Name="E" Background="LightGreen"/>
+                    <Button Content="r" x:Name="R" Background="DeepSkyBlue"/>
+                    <Button Content="t" x:Name="T" Background="DeepSkyBlue"/>
+                    <Button Content="y" x:Name="Y" Background="Violet"/>
+                    <Button Content="u" x:Name="U" Background="Violet"/>
+                    <Button Content="i" x:Name="I" Background="MediumVioletRed"/>
+                    <Button Content="o" x:Name="O" Background="Yellow"/>
+                    <Button Content="p" x:Name="P" Background="LightGreen"/>
+                    <Button Content="[" x:Name="OemOpenBrackets" Background="LightGreen"/>
+                    <Button Content="]" x:Name="Oem6" Background="LightGreen"/>
+                    <Button Content="\" x:Name="Oem5" Background="LightGreen" Width="70"/>
                 </StackPanel>
                 <StackPanel x:Name="ThirdRow" Margin="5,0,5,0" Orientation="Horizontal">
                     <Button Content="CapsLock" Background="DarkGray" Width="100" FontSize="16"/>

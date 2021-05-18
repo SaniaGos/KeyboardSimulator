@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,22 +37,30 @@ namespace KeyboardSimulator
                     {
                         if (item is Button)
                         {
+                            Button button = (item as Button);
                             string key = e.Key.ToString();
-                            string button = ((item as Button).Content as string);
-                            bool rez = key.Contains(button);
-                            if (rez)
+                            string buttonName = button.Name;
+                            
+                            if (key.Equals(buttonName))
                             {
-                                (item as Button).IsEnabled = true;
+                                button.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
                             }
+
                         }
                     }
                 }
             }
         }
 
+        private async Task UpdateButtonVisualState(Button button)
+        {
+            typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(button, new object[] { true });
+            await Task.Delay(TimeSpan.FromMilliseconds(200));
+            typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(button, new object[] { false });
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            _ = UpdateButtonVisualState(sender as Button);
         }
     }
 }
