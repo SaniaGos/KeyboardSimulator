@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KeyboardSimulator"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="KeyboardSimulator.MainWindow"
-        mc:Ignorable="d" Title="Keyboard Simulator" Height="450" Width="800" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800" KeyDown="Window_KeyDown" Background="AliceBlue">
+        mc:Ignorable="d" Title="Keyboard Simulator" Height="450" Width="800" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800" KeyDown="Window_KeyDown" Background="AliceBlue" KeyUp="Window_KeyUp">
     <Window.Resources>
 
         <Style TargetType="{x:Type Button}">
@@ -127,7 +127,7 @@
                     <Button Content="Enter" x:Name="Return" Background="DarkGray" Width="92" FontSize="16"/>
                 </StackPanel>
                 <StackPanel x:Name="FourthRow" Margin="5,0,5,0" Orientation="Horizontal">
-                    <Button Content="Shift" x:Name="LeftShift" Background="DarkGray" Width="125" FontSize="16"/>
+                    <Button Content="Shift" x:Name="LeftShift" Background="DarkGray" Width="125" FontSize="16" PreviewMouseUp="Shift_PreviewMouseUp" PreviewMouseDown="Shift_PreviewMouseDown"/>
                     <Button Content="z" x:Name="Z" Background="MediumVioletRed"/>
                     <Button Content="x" x:Name="X" Background="Yellow"/>
                     <Button Content="c" x:Name="C" Background="LightGreen"/>
@@ -138,7 +138,7 @@
                     <Button Content="," x:Name="OemComma" Background="MediumVioletRed"/>
                     <Button Content="." x:Name="OemPeriod" Background="Yellow"/>
                     <Button Content="/" x:Name="OemQuestion" Background="LightGreen"/>
-                    <Button Content="Shift" x:Name="RightShift" Background="DarkGray" Width="120" FontSize="16"/>
+                    <Button Content="Shift" x:Name="RightShift" Background="DarkGray" Width="120" FontSize="16" PreviewMouseUp="Shift_PreviewMouseUp" PreviewMouseDown="Shift_PreviewMouseDown"/>
                 </StackPanel>
                 <StackPanel x:Name="FifthRow" Margin="5,0,5,0" Orientation="Horizontal">
                     <Button Content="Ctrl" x:Name="LeftCtrl" Background="DarkGray" Width="70" FontSize="16"/>
