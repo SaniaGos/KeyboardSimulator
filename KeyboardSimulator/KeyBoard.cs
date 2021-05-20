@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,13 +14,15 @@ namespace KeyboardSimulator
     }
     class KeyBoard
     {
+        private bool isCapsLock;
         public List<Button> Buttons { get; set; }
         public Language Language { get; set; }
 
         public KeyBoard()
         {
             Buttons = new List<Button>();
-            Language = Language.English;
+            Language = Language.Ukrainian;
+            isCapsLock = false;
         }
         static string[] smallKeyNameEn = new string[]
         {
@@ -45,6 +48,14 @@ namespace KeyboardSimulator
               "Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "Shift",
                "Ctrl", "Win", "Alt", "Space", "Alt", "Win", "Ctrl"
         };
+        static string[] bigKeyNameUa = new string[]
+        {
+            "Ё", "!", "\"", "№", ";", "%", ":", "?", "*", "(", ")", "_", "+", "BackSpace",
+            "Tab", "Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Щ", "З", "Х", "Ї", "/",
+             "CapsLock", "Ф", "І", "В", "А", "П", "Р", "О", "Л", "Д", "Ж", "Є", "Enter",
+              "Shift", "Я", "Ч", "С", "М", "И", "Т", "Ь", "Б", "Ю", ",", "Shift",
+               "Ctrl", "Win", "Alt", "Space", "Alt", "Win", "Ctrl"
+        };
 
         public void ButtonDefaultContent()
         {
@@ -66,10 +77,74 @@ namespace KeyboardSimulator
                 {
                     if (Language == Language.English)
                         Buttons[i].Content = bigKeyNameEn[i];
-                    else Buttons[i].Content = smallKeyNameUa[i];
+                    else Buttons[i].Content = bigKeyNameUa[i];
                 }
             }
         }
+        public void KeyDown(string key)
+        {
+            foreach (Button button in Buttons)
+            {
+                if (key.Equals(button.Name))
+                {
+                    if (key.Equals("LeftShift") || key.Equals("RightShift"))
+                        ButtonShiftContent();
+                    else if (key.Equals("Capital"))
+                    {
+                        CapsLock(button);
+                        return;
+                    }
+                    else
+                        button.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
 
+                    _ = UpdateButtonVisualState(button);
+                }
+            }
+        }
+        public void KeyUp(string key)
+        {
+            foreach (Button button in Buttons)
+            {
+                if (key.Equals(button.Name))
+                {
+                    if (key.Equals("LeftShift") || key.Equals("RightShift"))
+                        ButtonDefaultContent();
+                    else if (key.Equals("Capital"))
+                    {
+                        return;
+                    }
+                    _ = UpdateButtonNormalVisualState(button);
+                }
+            }
+        }
+        private async Task UpdateButtonNormalVisualState(Button button)
+        {
+            typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(button, new object[] { false });
+            await Task.Delay(TimeSpan.FromMilliseconds(200));
+        }
+        private async Task UpdateButtonVisualState(Button button)
+        {
+            typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(button, new object[] { true });
+            await Task.Delay(TimeSpan.FromMilliseconds(200));
+        }
+        public void CapsLock(Button button)
+        {
+            if(!isCapsLock)
+            {
+                _ = UpdateButtonVisualState(button);
+                isCapsLock = true;
+                ButtonShiftContent();
+            }
+            else
+            {
+                _ = UpdateButtonNormalVisualState(button);
+                isCapsLock = false;
+                ButtonDefaultContent();
+            }
+        }
+        public void ChangeLanguage(string language)
+        {
+
+        }
     }
 }

@@ -63,18 +63,13 @@
             <RowDefinition Height="265"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Orientation="Vertical">
-            <TextBlock x:Name="ReadList" FontSize="25" HorizontalAlignment="Stretch" >
+            <TextBlock FontSize="25" HorizontalAlignment="Stretch" >
                 <ListBoxItem HorizontalContentAlignment="Center" HorizontalAlignment="Left">
-                    <TextBlock Text="Ще не закінчив" Background="Aqua"/>
+                    <TextBlock x:Name="Text" Text="Ще не закінчив" Background="Aqua"/>
                 </ListBoxItem>
             </TextBlock>
             <StackPanel x:Name="WriteText" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2,0,0,0">
-                <ListBoxItem Content="Щ" FontSize="25" Background="LightGreen" Padding="0" />
-                <ListBoxItem Content="е" FontSize="25" Background="LightGreen" Padding="0" />
-                <ListBoxItem Content=" " FontSize="25" Background="LightGreen" Padding="0" />
-                <ListBoxItem Content="н" FontSize="25" Background="LightGreen" Padding="0" />
-                <ListBoxItem Content="е" FontSize="25" Background="LightGreen" Padding="0" />
-                <ListBoxItem Content=" " FontSize="25" Background="LightGreen" Padding="0" />
+                
             </StackPanel>
         </StackPanel>
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
@@ -112,7 +107,7 @@
                     <Button Content="\" x:Name="Oem5" Background="LightGreen" Width="70"/>
                 </StackPanel>
                 <StackPanel x:Name="ThirdRow" Margin="5,0,5,0" Orientation="Horizontal">
-                    <Button Content="CapsLock" x:Name="Capital" Background="DarkGray" Width="100" FontSize="16"/>
+                    <Button Content="CapsLock" x:Name="Capital" Background="DarkGray" Width="100" FontSize="16" PreviewMouseDown="Capital_PreviewMouseDown"/>
                     <Button Content="a" x:Name="A" Background="MediumVioletRed"/>
                     <Button Content="s" x:Name="S" Background="Yellow"/>
                     <Button Content="d" x:Name="D" Background="LightGreen"/>

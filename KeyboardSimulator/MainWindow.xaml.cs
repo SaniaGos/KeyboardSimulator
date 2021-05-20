@@ -23,52 +23,29 @@ namespace KeyboardSimulator
     public partial class MainWindow : Window
     {
         KeyBoard board;
+        TextWriter writer;
         public MainWindow()
         {
             InitializeComponent();
             board = new KeyBoard();
+            writer = new TextWriter(Text, WriteText.Children);
             FillButtonList();
             board.ButtonDefaultContent();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            foreach (Button button in board.Buttons)
-            {
-                if (e.Key.ToString().Equals(button.Name) || e.SystemKey.ToString().Equals(button.Name))
-                {
-                    if (e.Key.ToString().Equals("LeftShift") || e.Key.ToString().Equals("RightShift"))
-                        board.ButtonShiftContent();
-                    else
-                        button.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
-                    
-                    _ = UpdateButtonVisualState(button);
-                }
-            }
+            if (e.SystemKey == Key.None)
+                board.KeyDown(e.Key.ToString());
+            else if (e.SystemKey == Key.LeftAlt || e.SystemKey == Key.RightAlt)
+                board.KeyDown(e.SystemKey.ToString());
         }
-
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            foreach (Button button in board.Buttons)
-            {
-                if (e.Key.ToString().Equals(button.Name) || e.SystemKey.ToString().Equals(button.Name))
-                {
-                    if (e.Key.ToString().Equals("LeftShift") || e.Key.ToString().Equals("RightShift"))
-                        board.ButtonDefaultContent();
-
-                    _ = UpdateButtonNormalVisualState(button);
-                }
-            }
-        }
-        private async Task UpdateButtonNormalVisualState(Button button)
-        {
-            typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(button, new object[] { false });
-            await Task.Delay(TimeSpan.FromMilliseconds(200));
-        }
-        private async Task UpdateButtonVisualState(Button button)
-        {
-            typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(button, new object[] { true });
-            await Task.Delay(TimeSpan.FromMilliseconds(200));
+            if (e.SystemKey == Key.None)
+                board.KeyUp(e.Key.ToString());
+            else if (e.SystemKey == Key.LeftAlt || e.SystemKey == Key.RightAlt)
+                board.KeyUp(e.SystemKey.ToString());
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -76,9 +53,9 @@ namespace KeyboardSimulator
             {
                 string key = (e.Source as Button).Content.ToString();
                 if (key == "Space") key = " ";
-                
                 if (key.Length == 1)
-                    WriteText.Children.Add(new ListBoxItem() { Padding = new Thickness(0), FontSize = 25, Background = Brushes.LightGreen, Content = key });
+                    writer.writeSumbol(Convert.ToChar(key));
+                else if (key == "BackSpace") writer.DeleteLastSumbol();
             }
         }
         private void FillButtonList()
@@ -97,7 +74,6 @@ namespace KeyboardSimulator
                 }
             }
         }
-
         private void Shift_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             board.ButtonDefaultContent();
@@ -105,6 +81,12 @@ namespace KeyboardSimulator
         private void Shift_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             board.ButtonShiftContent();
+        }
+
+        private void Capital_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(sender is Button)
+                board.CapsLock(sender as Button);
         }
     }
 }
