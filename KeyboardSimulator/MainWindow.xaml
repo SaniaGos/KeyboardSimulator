@@ -103,7 +103,7 @@
                 <Label Content="Difficulty: "/>
                 <Label Content="1" x:Name="Difficulty" FontWeight="Bold"/>
             </StackPanel>
-            <Slider x:Name="SliderDifficulty" Grid.Row="0" Grid.Column="3" Maximum="5" Value="1" Minimum="1" Margin="5,2,10,0" Padding="0" IsSnapToTickEnabled="True" TickFrequency="1" >
+            <Slider x:Name="SliderDifficulty" Grid.Row="0" Grid.Column="3" Maximum="5" Value="1" Minimum="1" Margin="5,2,10,0" Padding="0" IsSnapToTickEnabled="True" TickFrequency="1" ValueChanged="SliderDifficulty_ValueChanged" >
             </Slider>
             <Button Grid.Column="2" Grid.Row="1" x:Name="Start" Height="30" Width="100" Content="Start" FontSize="16" Click="Start_Stop_Click"/>
             <Button Grid.Column="3" Grid.Row="1" x:Name="Stop" IsEnabled="False" Height="30" Width="100" Content="Stop" FontSize="16" Click="Start_Stop_Click"/>
@@ -111,12 +111,12 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Vertical">
-            <TextBlock FontSize="25" HorizontalAlignment="Stretch" >
-                <ListBoxItem HorizontalContentAlignment="Center" HorizontalAlignment="Left">
-                    <TextBlock x:Name="Text" Text="Ще не закінчив" Background="Aqua"/>
+            <TextBlock FontSize="25" HorizontalAlignment="Stretch" Margin="10,0,0,0" >
+                <ListBoxItem HorizontalAlignment="Left">
+                    <TextBlock x:Name="Text" Text="Закінчив" Background="Aqua" FontFamily="Consolas"/>
                 </ListBoxItem>
             </TextBlock>
-            <StackPanel x:Name="WriteText" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2,0,0,0">
+            <StackPanel x:Name="WriteText" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="12,0,0,0">
                 <!--Тут буде введений техт утворюватимуться обекти TextBlock, одна буква один обєкт-->
             </StackPanel>
         </StackPanel>

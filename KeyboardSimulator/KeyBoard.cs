@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace KeyboardSimulator
 {
-    enum MyLanguage
+    public enum MyLanguage
     {
         English, Ukrainian
     }

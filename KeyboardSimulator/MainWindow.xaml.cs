@@ -33,13 +33,14 @@ namespace KeyboardSimulator
             timer.Elapsed += timer_Tick;
             time = 0;
             board = new KeyBoard();
-            writer = new TextWriter(Text, WriteText.Children);
+            writer = new TextWriter(Text, WriteText.Children, (int)SliderDifficulty.Value, MyLanguage.Ukrainian);
             FillButtonList();
             board.ButtonDefaultContent();
-
         }
         void timer_Tick(object sender, ElapsedEventArgs e)
         {
+            if (!writer.IsCanWrite)
+                Dispatcher.Invoke(new Action(() => { StopButton(); }));
             Dispatcher.Invoke(new Action(() => { time += 1; }));
             Dispatcher.Invoke(new Action(() => { Fails.Content = writer.Fails.ToString(); }));
             Dispatcher.Invoke(new Action(() => { Speed.Content = Convert.ToString(Math.Round((double)writer.GetSumbol() / time * 60, 1)); }));
@@ -102,9 +103,17 @@ namespace KeyboardSimulator
         {
             MenuItem obj = sender as MenuItem;
             if (obj.HeaderStringFormat == "EN")
+            {
                 board.ChangeLanguage(MyLanguage.English);
+                writer.Language = MyLanguage.English;
+                writer.NewText();
+            }
             else if (obj.HeaderStringFormat == "UA")
+            {
                 board.ChangeLanguage(MyLanguage.Ukrainian);
+                writer.Language = MyLanguage.Ukrainian;
+                writer.NewText();
+            }
 
             LabelLanguage.Content = obj.HeaderStringFormat;
         }
@@ -115,28 +124,43 @@ namespace KeyboardSimulator
                 Button button = (sender as Button);
                 if (button != null && button.Content.ToString() == "Start")
                 {
-                    Start.IsEnabled = false;
-                    New.IsEnabled = false;
-                    Stop.IsEnabled = true;
-                    writer.IsCanWrite = true;
-                    timer.Start();
+                    StartButton();
                 }
                 else if (button != null && button.Content.ToString() == "Stop")
                 {
-                    Start.IsEnabled = true;
-                    New.IsEnabled = true;
-                    Stop.IsEnabled = false;
-                    writer.IsCanWrite = false;
-                    timer.Stop();
+                    StopButton();
                 }
             }
+        }
+        private void StopButton()
+        {
+            Start.IsEnabled = true;
+            New.IsEnabled = true;
+            Stop.IsEnabled = false;
+            writer.IsCanWrite = false;
+            timer.Stop();
+        }
+        private void StartButton()
+        {
+            Start.IsEnabled = false;
+            New.IsEnabled = false;
+            Stop.IsEnabled = true;
+            writer.IsCanWrite = true;
+            timer.Start();
         }
         private void New_Click(object sender, RoutedEventArgs e)
         {
             time = 0;
             writer.Clear();
+            writer.NewText();
             Fails.Content = writer.Fails.ToString();
             Speed.Content = 0;
+        }
+        private void SliderDifficulty_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if(writer != null)
+                writer.Difficulty = (int)(sender as Slider).Value;
+            Difficulty.Content = (sender as Slider).Value;
         }
     }
 }

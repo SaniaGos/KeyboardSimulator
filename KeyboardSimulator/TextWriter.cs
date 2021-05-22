@@ -12,29 +12,35 @@ namespace KeyboardSimulator
     {
         TextBlock readText;
         UIElementCollection writeText;
+        int difficulty;
         public int Fails { get; private set; }
         public bool IsCanWrite { get; set; }
-        public int Difficulty { get; set; }
-        //public int Speed { get; private set; }
-        public TextWriter(TextBlock text, UIElementCollection colection )
+        public MyLanguage Language { get; set; }
+        public int Difficulty { get => difficulty; set { difficulty = value; NewText(); } }
+        public TextWriter(TextBlock text, UIElementCollection colection, int difficulty, MyLanguage language)
         {
             readText = text;
             writeText = colection;
             IsCanWrite = false;
+            Language = language;
+            Difficulty = difficulty;
         }
         public void writeSumbol(char sum)
         {
             if (IsCanWrite && writeText.Count < readText.Text.Length)
             {
                 if (sum == readText.Text[writeText.Count])
+                {
                     writeText.Add(new ListBoxItem()
                     {
                         Padding = new Thickness(0),
                         FontSize = 25,
                         Background = Brushes.LightGreen,
                         Content = sum,
-                        BorderBrush = Brushes.LightGreen
+                        BorderBrush = Brushes.LightGreen,
+                        FontFamily = new FontFamily("Consolas")
                     });
+                }
                 else
                 {
                     writeText.Add(new ListBoxItem()
@@ -43,11 +49,13 @@ namespace KeyboardSimulator
                         FontSize = 25,
                         Background = Brushes.Red,
                         Content = sum,
-                        BorderBrush = Brushes.Red
+                        BorderBrush = Brushes.Red,
+                        FontFamily = new FontFamily("Consolas")
                     });
                     Fails++;
                 }
             }
+            if (writeText.Count == readText.Text.Length) IsCanWrite = false; ;
         }
         public int GetSumbol()
         {
@@ -64,6 +72,10 @@ namespace KeyboardSimulator
         {
             Fails = 0;
             writeText.Clear();
+        }
+        public void NewText()
+        {
+            readText.Text = Text.GetText(Difficulty, Language);
         }
     }
 }
