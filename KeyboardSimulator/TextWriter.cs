@@ -12,27 +12,58 @@ namespace KeyboardSimulator
     {
         TextBlock readText;
         UIElementCollection writeText;
+        public int Fails { get; private set; }
+        public bool IsCanWrite { get; set; }
+        public int Difficulty { get; set; }
+        //public int Speed { get; private set; }
         public TextWriter(TextBlock text, UIElementCollection colection )
         {
             readText = text;
             writeText = colection;
+            IsCanWrite = false;
         }
         public void writeSumbol(char sum)
         {
-            if (writeText.Count < readText.Text.Length)
+            if (IsCanWrite && writeText.Count < readText.Text.Length)
             {
                 if (sum == readText.Text[writeText.Count])
-                    writeText.Add(new ListBoxItem() { Padding = new Thickness(0), FontSize = 25, Background = Brushes.LightGreen, Content = sum });
+                    writeText.Add(new ListBoxItem()
+                    {
+                        Padding = new Thickness(0),
+                        FontSize = 25,
+                        Background = Brushes.LightGreen,
+                        Content = sum,
+                        BorderBrush = Brushes.LightGreen
+                    });
                 else
-                    writeText.Add(new ListBoxItem() { Padding = new Thickness(0), FontSize = 25, Background = Brushes.Red, Content = sum });
+                {
+                    writeText.Add(new ListBoxItem()
+                    {
+                        Padding = new Thickness(0),
+                        FontSize = 25,
+                        Background = Brushes.Red,
+                        Content = sum,
+                        BorderBrush = Brushes.Red
+                    });
+                    Fails++;
+                }
             }
+        }
+        public int GetSumbol()
+        {
+            return writeText.Count;
         }
         public void DeleteLastSumbol()
         {
-            if (writeText.Count > 0)
+            if (IsCanWrite && writeText.Count > 0)
             {
                 writeText.RemoveAt(writeText.Count - 1); 
             }
+        }
+        public void Clear()
+        {
+            Fails = 0;
+            writeText.Clear();
         }
     }
 }

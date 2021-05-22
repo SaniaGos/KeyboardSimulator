@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Timers;
 
 namespace KeyboardSimulator
 {
@@ -24,15 +24,26 @@ namespace KeyboardSimulator
     {
         KeyBoard board;
         TextWriter writer;
+        Timer timer;
+        int time;
         public MainWindow()
         {
             InitializeComponent();
+            timer = new Timer() { Interval = 1000, Enabled = false };
+            timer.Elapsed += timer_Tick;
+            time = 0;
             board = new KeyBoard();
             writer = new TextWriter(Text, WriteText.Children);
             FillButtonList();
             board.ButtonDefaultContent();
-        }
 
+        }
+        void timer_Tick(object sender, ElapsedEventArgs e)
+        {
+            Dispatcher.Invoke(new Action(() => { time += 1; }));
+            Dispatcher.Invoke(new Action(() => { Fails.Content = writer.Fails.ToString(); }));
+            Dispatcher.Invoke(new Action(() => { Speed.Content = Convert.ToString(Math.Round((double)writer.GetSumbol() / time * 60, 1)); }));
+        }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.SystemKey == Key.None)
@@ -82,11 +93,50 @@ namespace KeyboardSimulator
         {
             board.ButtonShiftContent();
         }
-
         private void Capital_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(sender is Button)
+            if (sender is Button)
                 board.CapsLock(sender as Button);
+        }
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem obj = sender as MenuItem;
+            if (obj.HeaderStringFormat == "EN")
+                board.ChangeLanguage(MyLanguage.English);
+            else if (obj.HeaderStringFormat == "UA")
+                board.ChangeLanguage(MyLanguage.Ukrainian);
+
+            LabelLanguage.Content = obj.HeaderStringFormat;
+        }
+        private void Start_Stop_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button)
+            {
+                Button button = (sender as Button);
+                if (button != null && button.Content.ToString() == "Start")
+                {
+                    Start.IsEnabled = false;
+                    New.IsEnabled = false;
+                    Stop.IsEnabled = true;
+                    writer.IsCanWrite = true;
+                    timer.Start();
+                }
+                else if (button != null && button.Content.ToString() == "Stop")
+                {
+                    Start.IsEnabled = true;
+                    New.IsEnabled = true;
+                    Stop.IsEnabled = false;
+                    writer.IsCanWrite = false;
+                    timer.Stop();
+                }
+            }
+        }
+        private void New_Click(object sender, RoutedEventArgs e)
+        {
+            time = 0;
+            writer.Clear();
+            Fails.Content = writer.Fails.ToString();
+            Speed.Content = 0;
         }
     }
 }

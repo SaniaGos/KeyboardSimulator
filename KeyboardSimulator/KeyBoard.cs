@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace KeyboardSimulator
 {
-    enum Language
+    enum MyLanguage
     {
         English, Ukrainian
     }
@@ -16,12 +16,12 @@ namespace KeyboardSimulator
     {
         private bool isCapsLock;
         public List<Button> Buttons { get; set; }
-        public Language Language { get; set; }
+        public MyLanguage Language { get; set; }
 
         public KeyBoard()
         {
             Buttons = new List<Button>();
-            Language = Language.Ukrainian;
+            Language = MyLanguage.Ukrainian;
             isCapsLock = false;
         }
         static string[] smallKeyNameEn = new string[]
@@ -63,7 +63,7 @@ namespace KeyboardSimulator
             {
                 for (int i = 0; i < smallKeyNameEn.Length; i++)
                 {
-                    if(Language == Language.English)
+                    if(Language == MyLanguage.English)
                         Buttons[i].Content = smallKeyNameEn[i];
                     else Buttons[i].Content = smallKeyNameUa[i];
                 }
@@ -75,7 +75,7 @@ namespace KeyboardSimulator
             {
                 for (int i = 0; i < smallKeyNameEn.Length; i++)
                 {
-                    if (Language == Language.English)
+                    if (Language == MyLanguage.English)
                         Buttons[i].Content = bigKeyNameEn[i];
                     else Buttons[i].Content = bigKeyNameUa[i];
                 }
@@ -142,9 +142,32 @@ namespace KeyboardSimulator
                 ButtonDefaultContent();
             }
         }
-        public void ChangeLanguage(string language)
+        public void ChangeLanguage(MyLanguage language)
         {
-
+            if (Buttons.Count == smallKeyNameEn.Length)
+            {
+                if (language == MyLanguage.English)
+                {
+                    for (int i = 0; i < smallKeyNameEn.Length; i++)
+                    {
+                        if (isCapsLock)
+                            Buttons[i].Content = bigKeyNameEn[i];
+                        else Buttons[i].Content = smallKeyNameEn[i];
+                    }
+                    Language = MyLanguage.English;
+                }
+                else if (language == MyLanguage.Ukrainian)
+                {
+                    for (int i = 0; i < smallKeyNameEn.Length; i++)
+                    {
+                        if (isCapsLock)
+                            Buttons[i].Content = bigKeyNameUa[i];
+                        else Buttons[i].Content = smallKeyNameUa[i];
+                    }
+                    Language = MyLanguage.Ukrainian;
+                }
+            }
         }
+
     }
 }
